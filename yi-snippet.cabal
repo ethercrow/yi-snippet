@@ -1,5 +1,5 @@
 name:                yi-snippet
-version:             0.1.0.0
+version:             0.2.0
 synopsis:            Snippet support for Yi
 description:         Snippet support for Yi
 homepage:            https://github.com/yi-editor/yi-snippet
@@ -13,13 +13,34 @@ cabal-version:       >=1.10
 
 library
   exposed-modules:
-    Yi.Templates
+    Yi.Snippet
+    Yi.Snippet.Internal
 
   build-depends:
-      base >=4 && <5
+      base >= 4.7
+    , binary
     , containers
+    , data-default
+    , free
+    , lens
+    , mtl
     , yi
     , yi-rope
 
-  hs-source-dirs:      src
+  hs-source-dirs: src
+  ghc-options: -Wall -ferror-spans
   default-language:    Haskell2010
+
+Test-Suite TestMain
+  type: exitcode-stdio-1.0
+  main-is: TestMain.hs
+  hs-source-dirs: test
+  ghc-options: -Wall -ferror-spans
+  default-language: Haskell2010
+  build-depends:
+    base >= 4.7,
+    containers,
+    tasty-th,
+    tasty-hunit,
+    yi-rope,
+    yi-snippet
