@@ -1,3 +1,5 @@
+language: c
+
 matrix:
   allow_failures:
     - env: GHCVER=head CABALVER=head
@@ -20,7 +22,7 @@ install:
  - travis_retry cabal-$CABALVER install gtk2hs-buildtools
 
 script:
- - cabal-$CABALVER install
+ - cabal-$CABALVER install --force-reinstalls
 
 notifications:
   irc: "chat.freenode.net#yi"
